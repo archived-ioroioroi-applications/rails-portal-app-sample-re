@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rapportal(仮)</title>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+      <!-- <nav class="navbar navbar-inverse"> -->
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>  <!-- sr-only:スクリーンリーダーのみ. テキストは表示されない -->
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ra<span class="title-accessory">pp</span>ortal</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+
+    <div class="container after-navbar-fixed-top">
+      <div class="row">
+        <div class="jumbotron jumbotron-ext">
+          <div class="container">
+            <h1 class="site-title" id="site-title">Rapportal</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <a href="/top/index/">通常表示</a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <a href="/top/index_list/">一覧表示</a>
+        </div>
+      </div>
+    </div> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10"><!-- コンテンツ本体. colが9にならない...呼び出したページでまた12本になる...のは呼び出したページでまたclass="container"してたのが原因でした -->
+            <%= yield %>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2 pull-right"><!-- 左サイドバー -->
+          <aside>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Menu
+              </div>
+              <ul class="sidebar list nav sidebar-nav nav-pills nav-stacked" id="category">
+              <!-- <ul class="list-unstyled" id="category"> -->
+               <li><a href="/tokyo/bank/tokyo-chiyoda.php">千代田区(482)</a></li>
+               <li><a href="/tokyo/bank/tokyo-chuo.php">中央区(375)</a></li>
+               <li><a href="/tokyo/bank/tokyo-minato.php">港区(461)</a></li>
+               <li><a href="/tokyo/bank/tokyo-shinjuku.php">新宿区(444)</a></li>
+              </ul>
+            </div>
+          </aside>
+          <aside>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Menu2
+              </div>
+              <ul class="list nav sidebar-nav nav-pills nav-stacked" id="category">
+              <!-- <ul class="list-unstyled" id="category"> -->
+               <li><a href="/tokyo/bank/tokyo-chiyoda.php">千代田区(482)</a></li>
+               <li><a href="/tokyo/bank/tokyo-chuo.php">中央区(375)</a></li>
+               <li><a href="/tokyo/bank/tokyo-minato.php">港区(461)</a></li>
+               <li><a href="/tokyo/bank/tokyo-shinjuku.php">新宿区(444)</a></li>
+              </ul>
+            </div>
+          </aside>
+          <aside>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                注意
+              </div>
+              <h6>現在β版公開です<br> 当サイトは予告なくメンテンス, 停止することがあります</h6>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

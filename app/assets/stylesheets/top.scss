@@ -1,0 +1,107 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.category-title{
+  font-style: italic;
+  font-size: 200%;
+  margin-bottom: -30px;
+}
+
+.nav-tabs-ext{
+  margin-top: 40px;
+}
+
+li.content-nav-li{
+  float: left;
+  text-align: center;
+  display: list-item;
+  border-bottom: 2px solid #CCCCCC;
+  padding: 10px 10px 5px 10px;
+}
+
+ul.content-nav{
+}
+
+.content-list{
+  text-align: center;
+  position: relative;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  min-height: 10px;
+  word-break: break-all;
+}
+
+
+
+img.article-icon{
+  background-color: #ccc;
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.article-icon-space{
+  float: left;
+  margin: -5px 10px -6px -5px;
+  overflow: hidden;
+}
+
+p.article-link{
+}
+
+.article-link-space {
+  overflow: hidden;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+p.article-source-link{
+}
+
+.article-source-space {
+  width: 100px;
+  overflow: hidden;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+tr.article{
+}
+
+table.table-scroll{
+  display: block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  height: 600px;
+}
+
+table.table-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+table.table-scroll tbody.tbody-scroll td.article-source td.article-main{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* スマホ用 */
+@media (max-width: 544px) {
+  img.article-icon{
+    background-color: #000;
+    width: 128px;
+    height: 82px;
+  }
+
+  p.article-link{
+    font-size: small;
+  }
+}
