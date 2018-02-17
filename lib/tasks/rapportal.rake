@@ -3,7 +3,7 @@ namespace :rapportal do
   task :scrap_curazy => :environment do |task, args|
     # RSSから取れないため、デフォルト値を設定 -------------------------------
     icon = "https://static.curazy.com/image/curazy-v03/logo_curazy.png"
-    category = "コラム"
+    category = "column"
     source_link = "https://curazy.com"
     source_title = "笑うメディア クレイジー"
     source_icon = "https://static.curazy.com/image/curazy-v03/logo_curazy.png"
@@ -44,7 +44,7 @@ namespace :rapportal do
   desc "Create records from RSS by CuRAZY."
   task :scrap_gizmodo => :environment do |task, args|
     # RSSから取れないため、デフォルト値を設定 -------------------------------
-    category = "IT"
+    category = "it"
     source_link = "https://www.gizmodo.jp"
     source_title = "ギズモード・ジャパン"
     source_icon = "https://i.kinja-img.com/gawker-media/image/upload/s--ay4UlTaU--/wvhsuflzmeoo0zr9ex55.png"

@@ -2,28 +2,45 @@
   <div class="col-xs-12">
     <h5 class="horizontal-vartical-box">
       <ul class="nav content-nav category-list">
-        <li class="content-nav-li col-xs-4">
-          <a class="nav-link category-list-item" id="category-list-item-column" data-category-list-item-column="コラム">コラム</a>
+        <%
+        if request.path == "/top/index/column"
+          content_nav_li_column_active_or_not = "active"
+        else
+          content_nav_li_column_active_or_not = ""
+        end
+        %>
+        <li class="content-nav-li <%= content_nav_li_column_active_or_not %> col-xs-4">
+          <a href="/top/index/column" class="nav-link category-list-item <%= content_nav_li_column_active_or_not %>" id="category-list-item-column">コラム</a>
         </li>
-        <li class="content-nav-li col-xs-4">
-          <a class="nav-link category-list-item" id="category-list-item-it" data-category-list-item-it="IT">IT</a>
+        <%
+        if request.path == "/top/index/it"
+          content_nav_li_it_active_or_not = "active"
+        else
+          content_nav_li_it_active_or_not = ""
+        end
+        %>
+        <li class="content-nav-li <%= content_nav_li_it_active_or_not %> col-xs-4">
+          <a href="/top/index/it" class="nav-link category-list-item <%= content_nav_li_it_active_or_not %>" id="category-list-item-it">IT</a>
         </li>
-        <li class="content-nav-li col-xs-4">
-          <a class="nav-link category-list-item" id="category-list-item-gourmet" data-category-list-item-gourmet="グルメ">グルメ</a>
+        <%
+        if request.path == "/top/index/gourmet"
+          content_nav_li_gourmet_active_or_not = "active"
+        else
+          content_nav_li_gourmet_active_or_not = ""
+        end
+        %>
+        <li class="content-nav-li <%= content_nav_li_gourmet_active_or_not %> col-xs-4">
+          <a href="/top/index/gourmet" class="nav-link category-list-item <%= content_nav_li_gourmet_active_or_not %>" id="category-list-item-gourmet">グルメ</a>
         </li>
       </ul>
     </h5>
   </div>
 </div> <!-- 目次部分終了 -->
-
 <div class="row">
   <div class="col-sm-12">
     <div class="row">
       <div class="col-xs-12 pull-right">   <!-- タブ部分開始 -->
         <ul class="nav nav-tabs nav-tabs-ext">
-          <li class="">
-            <p class="category-title" id="category-title">コラム</p>
-          </li>
           <li class="nav-item pull-right">
             <a href="#tab-week" class="nav-link bg-primary" data-toggle="tab">一週間</a>
           </li>
