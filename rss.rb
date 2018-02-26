@@ -24,10 +24,8 @@ def parse_rss(uri)
   return feed
 end
 
-feed = parse_rss("https://www.gizmodo.jp/index.xml")
+feed = parse_rss("https://rocketnews24.com/feed/")
 # p feeds.entries[0]
-
-
 # puts "title         = " + feed.title
 # puts "url           = " + feed.url
 # puts "last_modified = " + feed.last_modified.to_s
@@ -35,10 +33,35 @@ feed = parse_rss("https://www.gizmodo.jp/index.xml")
 # p feed.entries[0]
 
 feed.entries.each do |entry|
-  puts "-----"
+  puts "-----@article.inspection"
+  puts entry.inspect
+  puts "-----summary"
   puts entry.title
   puts entry.url
   puts entry.categories
   puts entry.image
+  puts entry.summary
   puts entry.published.strftime("%Y-%m-%d %H:%M:%S")
+  puts "-----判定後カテゴリー"
+  if entry.categories.include?("コラム")
+    category = "column"
+  elsif entry.categories.include?("生活")
+    category = "column"
+  elsif entry.categories.include?("知識")
+    category = "column"
+  elsif entry.categories.include?("芸能")
+    category = "column"
+  elsif entry.categories.include?("ガジェット")
+    category = "it"
+  elsif entry.categories.include?("IT")
+    category = "it"
+  elsif entry.categories.include?("グルメ")
+    category = "gourmet"
+  else
+    category = "gourmet"
+    p "知らないカテゴリー"
+    next
+  end
+  puts category
+
 end

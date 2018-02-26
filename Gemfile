@@ -38,6 +38,10 @@ gem "pry"
 gem "selenium-webdriver"
 # Use RSSFeed
 gem "feedjira"
+# Use AlternativeCron
+# gem "clockwork"
+gem "sidekiq-scheduler"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

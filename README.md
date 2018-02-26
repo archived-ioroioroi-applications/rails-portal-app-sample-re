@@ -24,3 +24,11 @@ Things you may want to cover:
 * ...
 
 this repositry of myportal
+
+
+## Registered Services
+* redis
+* postgres
+* nginx
+* rapportal #<-Unicorn Service
+* rapportal_sidekiq

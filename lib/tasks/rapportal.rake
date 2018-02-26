@@ -10,7 +10,7 @@ namespace :rapportal do
     # -----------------------------------------------------------------
     uri = 'https://curazy.com/feed'
     feed = Scrapping::Rssfeed.parse(uri)
-    article = []
+    article = {}
     feed.entries.each do |entry|
       p article = {date: entry.published, category: category, link: entry.url, title: entry.title, icon: icon, source_link: source_link, source_title: source_title, source_icon: source_icon}
       begin
@@ -20,28 +20,9 @@ namespace :rapportal do
         next
       end
     end
-
-    #     article_record = {date: Time.current.strftime("%Y/%m/%d %H:%M:%S"), article_link: article[:href], article_title: article[:title], article_source_link: uri, article_source: article_source}
-    #     begin
-    #       Article.create(article_record)
-    #       p "[Created] #{article_record[:article_title]}"
-    #     rescue ActiveRecord::RecordNotUnique => e # 一意制約に引っかかったら
-    #       p "[Skip] Record duplicate (#{article_record[:article_title]})"
-    #       next
-    #     rescue ActiveRecord::StatementInvalid => e  # Not Null制約に引っかかったら
-    #       p "[Skip] Record null value in column article_title "
-    #       next
-    #     rescue => e # その他何かでエラーが起きたら
-    #       p "[Skip] something wrong "
-    #       p e
-    #       next
-    #     end
-    #   end
-    # end
-    # p feed
   end
 
-  desc "Create records from RSS by CuRAZY."
+  desc "Create records from RSS by Gizmodo."
   task :scrap_gizmodo => :environment do |task, args|
     # RSSから取れないため、デフォルト値を設定 -------------------------------
     category = "it"
@@ -51,7 +32,7 @@ namespace :rapportal do
     # -----------------------------------------------------------------
     uri = 'https://www.gizmodo.jp/index.xml'
     feed = Scrapping::Rssfeed.parse(uri)
-    article = []
+    article = {}
     feed.entries.each do |entry|
       p article = {date: entry.published, category: category, link: entry.url, title: entry.title, icon: entry.image, source_link: source_link, source_title: source_title, source_icon: source_icon}
       begin
@@ -61,26 +42,55 @@ namespace :rapportal do
         next
       end
     end
-
-    #     article_record = {date: Time.current.strftime("%Y/%m/%d %H:%M:%S"), article_link: article[:href], article_title: article[:title], article_source_link: uri, article_source: article_source}
-    #     begin
-    #       Article.create(article_record)
-    #       p "[Created] #{article_record[:article_title]}"
-    #     rescue ActiveRecord::RecordNotUnique => e # 一意制約に引っかかったら
-    #       p "[Skip] Record duplicate (#{article_record[:article_title]})"
-    #       next
-    #     rescue ActiveRecord::StatementInvalid => e  # Not Null制約に引っかかったら
-    #       p "[Skip] Record null value in column article_title "
-    #       next
-    #     rescue => e # その他何かでエラーが起きたら
-    #       p "[Skip] something wrong "
-    #       p e
-    #       next
-    #     end
-    #   end
-    # end
-    # p feed
   end
+
+  desc "Create records from RSS by Rocketnews24."
+  task :scrap_rocketnews => :environment do |task, args|
+    # RSSから取れないため、デフォルト値を設定 -------------------------------
+    source_link = "https://rocketnews24.com"
+    source_title = "RocketNews24"
+    source_icon = nil
+    # -----------------------------------------------------------------
+    uri = 'https://rocketnews24.com/feed/'
+    feed = Scrapping::Rssfeed.parse(uri)
+    article = {}
+    feed.entries.each do |entry|
+      # RSSで取得したカテゴリーから分類 ------------------------------------
+      if entry.categories.include?("コラム")
+        category = "column"
+      elsif entry.categories.include?("生活")
+        category = "column"
+      elsif entry.categories.include?("知識")
+        category = "column"
+      elsif entry.categories.include?("芸能")
+        category = "column"
+      elsif entry.categories.include?("ガジェット")
+        category = "it"
+      elsif entry.categories.include?("IT")
+        category = "it"
+      elsif entry.categories.include?("グルメ")
+        category = "gourmet"
+      else
+        p "該当しないカテゴリー"
+        next
+      end
+      # ---------------------------------------------------------------
+      p article = {date: entry.published, category: category, link: entry.url, title: entry.title, icon: entry.image, source_link: source_link, source_title: source_title, source_icon: source_icon}
+      begin
+        Article.create_or_update(article)
+      rescue => e
+        puts e
+        next
+      end
+    end
+  end
+
+  desc "Testtasks for Debug."
+  task :put_hello => :environment do |task, args|
+    message = "Hello world. This is the debugging"
+    Utility::Log.output_success(message)
+  end
+
 end
 
 # ユーザビリティ観点

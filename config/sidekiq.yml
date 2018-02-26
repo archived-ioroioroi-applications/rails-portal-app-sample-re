@@ -1,0 +1,14 @@
+:logfile: ./log/sidekiq_development.log
+:schedule:
+  scrap_curazy:
+    cron: '0 0 */6 * * *'   # Runs once per minute
+    class: ScrapCrazyWorker
+    enabled: true
+  scrap_gizmodo:
+    cron: '0 10 */6 * * *'   # Runs once per minute
+    class: ScrapGizmodoWorker
+    enabled: true
+  scrap_rocketnews:
+    cron: '0 20 */6 * * *'   # Runs once per minute
+    class: ScrapRocketnewsWorker
+    enabled: true
