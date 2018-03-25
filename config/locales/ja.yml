@@ -19,19 +19,19 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+ja:
   articles:
     categories:
       column:
-        "Column"
+        "コラム"
       it:
         "IT"
       gourmet:
-        "Gourmet"
+        "グルメ"
     time_range:
       today:
-        "Today"
+        "今日"
       yesterday:
-        "Yesterday"
+        "昨日"
       week:
-        "This week"
+        "一週間"
