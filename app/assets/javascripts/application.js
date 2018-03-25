@@ -12,6 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap.min
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  // $('.area-ad').replaceWith($("<script src=\"//adm.shinobi.jp/s/0e0b09e76e0a3828433beb567eb4a690\"></script>").hide().fadeIn('slow'));
+
+  // var script = document.createElement('script');
+  // script.src = "//adm.shinobi.jp/s/0e0b09e76e0a3828433beb567eb4a690";
+  // document.querySelector('.area-ad').appendChild(script);
+
+});

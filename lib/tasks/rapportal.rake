@@ -12,6 +12,23 @@ namespace :rapportal do
     feed = Scrapping::Rssfeed.parse(uri)
     article = {}
     feed.entries.each do |entry|
+      # RSSで取得したカテゴリーから分類 ------------------------------------
+      if entry.categories.include?("料理")
+        category = "gourmet"
+      elsif entry.categories.include?("レシピ")
+        category = "gourmet"
+      elsif entry.categories.include?("お菓子")
+        category = "gourmet"
+      else
+        category = "column"
+      end
+      # ---------------------------------------------------------------
+      # 記事アイコンを記事リンク先から取得. なければデフォルトアイコンを使用 -----
+      begin
+        icon = Scrapping::Html.get_all(entry.url).css('.entry-thumbnail').css('img')[0].attribute('src').value
+      rescue => e
+      end
+      # ---------------------------------------------------------------
       p article = {date: entry.published, category: category, link: entry.url, title: entry.title, icon: icon, source_link: source_link, source_title: source_title, source_icon: source_icon}
       begin
         Article.create_or_update(article)
@@ -71,7 +88,7 @@ namespace :rapportal do
       elsif entry.categories.include?("グルメ")
         category = "gourmet"
       else
-        p "該当しないカテゴリー"
+        p "該当しないカテゴリー"  # 上記に該当しなければその記事を取得しない
         next
       end
       # ---------------------------------------------------------------

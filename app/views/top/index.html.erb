@@ -56,13 +56,13 @@
 
     <div class="tab-content">   <!-- コンテンツ部分 -->
       <div id="tab-week" class="tab-pane">
-        <%= render 'article_table', articles: @weekly_articles, scroll_on_off: 'ON' %>
+        <%= render 'article_table', articles: @weekly_articles, scroll_on_off: 'OFF' %>
       </div>
       <div id="tab-yesterday" class="tab-pane">
-        <%= render 'article_table', articles: @yesterday_articles, scroll_on_off: 'ON' %>
+        <%= render 'article_table', articles: @yesterday_articles, scroll_on_off: 'OFF' %>
       </div>
       <div id="tab-today" class="tab-pane active">
-        <%= render 'article_table', articles: @daily_articles, scroll_on_off: 'ON' %>
+        <%= render 'article_table', articles: @daily_articles, scroll_on_off: 'OFF' %>
       </div>
     </div>    <!-- コンテンツ部分終了 -->
   </div>

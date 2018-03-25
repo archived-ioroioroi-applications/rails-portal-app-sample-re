@@ -10,7 +10,8 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports.
-  config.consider_all_requests_local = true
+  # config.consider_all_requests_local = true  # developmentではdebugのためエラーをフル表示
+  config.consider_all_requests_local = false  # productionと同じエラー画面を表示
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
