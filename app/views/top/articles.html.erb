@@ -1,0 +1,63 @@
+<div class="row"> <!-- 目次部分開始 -->
+  <div class="col-xs-12">
+    <h5 class="horizontal-vartical-box">
+      <ul class="nav content-nav category-list">
+        <%
+        if request.path == "/top/articles/column"
+          content_nav_li_column_active_or_not = "active"
+        else
+          content_nav_li_column_active_or_not = ""
+        end
+        %>
+        <li class="content-nav-li <%= content_nav_li_column_active_or_not %> col-xs-4">
+          <a href="/top/articles/column" class="nav-link category-list-item <%= content_nav_li_column_active_or_not %>" id="category-list-item-column"><%= t('articles.categories.column') %></a>
+        </li>
+        <%
+        if request.path == "/top/articles/it"
+          content_nav_li_it_active_or_not = "active"
+        else
+          content_nav_li_it_active_or_not = ""
+        end
+        %>
+        <li class="content-nav-li <%= content_nav_li_it_active_or_not %> col-xs-4">
+          <a href="/top/articles/it" class="nav-link category-list-item <%= content_nav_li_it_active_or_not %>" id="category-list-item-it"><%= t('articles.categories.it') %></a>
+        </li>
+        <%
+        if request.path == "/top/articles/gourmet"
+          content_nav_li_gourmet_active_or_not = "active"
+        else
+          content_nav_li_gourmet_active_or_not = ""
+        end
+        %>
+        <li class="content-nav-li <%= content_nav_li_gourmet_active_or_not %> col-xs-4">
+          <a href="/top/articles/gourmet" class="nav-link category-list-item <%= content_nav_li_gourmet_active_or_not %>" id="category-list-item-gourmet"><%= t('articles.categories.gourmet') %></a>
+        </li>
+      </ul>
+    </h5>
+  </div>
+</div> <!-- 目次部分終了 -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-xs-12 pull-right">   <!-- タブ部分開始 -->
+        <ul class="nav nav-tabs nav-tabs-ext">
+          <li class="nav-item pull-right">
+            <a href="#tab-yesterday" class="nav-link bg-primary" data-toggle="tab"><%= t('articles.time_range.yesterday') %></a>
+          </li>
+          <li class="nav-item pull-right active">
+            <a href="#tab-today" class="nav-link bg-primary" data-toggle="tab"><%= t('articles.time_range.today') %></a>
+          </li>
+        </ul>
+      </div>
+    </div>              <!-- タブ部分終了 -->
+
+    <div class="tab-content">   <!-- コンテンツ部分 -->
+      <div id="tab-yesterday" class="tab-pane">
+        <%= render 'articles_list', articles: @yesterday_articles, scroll_on_off: 'OFF' %>
+      </div>
+      <div id="tab-today" class="tab-pane active">
+        <%= render 'articles_list', articles: @daily_articles, scroll_on_off: 'OFF' %>
+      </div>
+    </div>    <!-- コンテンツ部分終了 -->
+  </div>
+</div>

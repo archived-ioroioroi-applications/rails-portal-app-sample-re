@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  root 'top#index'
+  root 'top#articles'
 
-  get 'top/index'
-  get 'top/index/:category' => 'top#index'
-  get 'top/index_list'
+  get 'top/articles'
+  get 'top/articles/:category' => 'top#articles'
 
   get '*not_found' => 'application#routing_error'
   post '*not_found' => 'application#routing_error'

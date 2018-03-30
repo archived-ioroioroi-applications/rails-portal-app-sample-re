@@ -1,0 +1,42 @@
+<div class="table">
+  <%
+  if scroll_on_off == 'ON'
+    table_class = 'table table-hover table-bordered table-condensed table-scroll h5'
+  elsif scroll_on_off == 'OFF'
+    table_class = 'table table-hover table-bordered table-condensed h5'
+  else
+    table_class = 'table table-hover table-bordered table-condensed h5'
+  end
+  %>
+
+  <table class="<%= table_class %>">
+    <tbody class="tbody-scroll">
+      <% articles.each do |article| %>
+        <tr class="article">
+          <td class="article-main">
+            <div class="article-icon-space">
+              <a href="<%= article.link %>" target="_blank">
+                <img class="article-icon" border="0" src=<%= article.icon %> alt=<%= article.title %> >
+              </a>
+            </div>
+            <div class="article-link-space">
+              <a href="<%= article.link %>" target="_blank">
+                <p class="article-link"><%= article.title %></p>
+              </a>
+            </div>
+          </td>
+          <td class="hidden-xs article-source">
+            <div class="article-source-space">
+              <a href="<%= article.source_link %>" target="_blank">
+                <p class="article-source-link"><%= article.source_title %></p>
+              </a>
+            </div>
+          </td>
+          <!-- <td class="hidden-xs article-uploadedtime">
+            <%= article.date.strftime("%Y-%m-%d %H:%M:%S") %>
+          </td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

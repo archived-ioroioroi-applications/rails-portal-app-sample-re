@@ -1,4 +1,4 @@
-:logfile: ./log/sidekiq_development.log
+# :logfile: ./log/sidekiq_development.log
 :schedule:
   scrap_curazy:
     cron: '0 0 */6 * * *'   # Runs once per minute

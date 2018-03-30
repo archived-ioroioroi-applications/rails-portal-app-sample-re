@@ -102,12 +102,6 @@ namespace :rapportal do
     end
   end
 
-  desc "Testtasks for Debug."
-  task :put_hello => :environment do |task, args|
-    message = "Hello world. This is the debugging"
-    Utility::Log.output_success(message)
-  end
-
 end
 
 # ユーザビリティ観点

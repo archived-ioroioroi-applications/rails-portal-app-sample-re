@@ -1,7 +1,7 @@
 require 'time'
 
 class TopController < ApplicationController
-  def index
+  def articles
     time_now = Time.now
     time_yesterday = time_now - 24*60*60
     time_2daysago = time_now - 24*60*60*2
@@ -27,10 +27,10 @@ class TopController < ApplicationController
         .where("category = ?", category_params)
         .order("date DESC")
         .limit(50)
-      @weekly_articles = Article.where(date: time_week_from..time_week_to)
-        .where("category = ?", category_params)
-        .order("date DESC")
-        .limit(50)
+      # @weekly_articles = Article.where(date: time_week_from..time_week_to)
+      #   .where("category = ?", category_params)
+      #   .order("date DESC")
+      #   .limit(50)
     else
       @category_title = "ALL"
       @daily_articles = Article.where(date: time_yesterday..time_now)
@@ -41,9 +41,9 @@ class TopController < ApplicationController
         .order("date DESC")
         .limit(50)
 
-      @weekly_articles = Article.where(date: time_week_from..time_week_to)
-        .order("date DESC")
-        .limit(50)
+      # @weekly_articles = Article.where(date: time_week_from..time_week_to)
+      #   .order("date DESC")
+      #   .limit(50)
     end
   end
 
