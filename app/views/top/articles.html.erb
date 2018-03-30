@@ -1,46 +1,65 @@
-<div class="row"> <!-- 目次部分開始 -->
+<%
+  if @articles_display == "list"
+    articles_render_html = 'articles_list'
+    articles_diaplay_list_icon = 'list_active.svg'
+    articles_diaplay_grid_icon = 'grid_deactive.svg'
+  elsif @articles_display == "grid"
+    articles_render_html = 'articles_grid'
+    articles_diaplay_list_icon = 'list_deactive.svg'
+    articles_diaplay_grid_icon = 'grid_active.svg'
+  else
+    articles_render_html = 'articles_list'
+    articles_diaplay_list_icon = 'list_active.svg'
+    articles_diaplay_grid_icon = 'grid_deactive.svg'
+  end
+
+  if request.path == "/top/articles/column"
+    content_nav_li_column_active_or_not = "active"
+    content_nav_li_it_active_or_not = ""
+    content_nav_li_gourmet_active_or_not = ""
+  elsif request.path == "/top/articles/it"
+    content_nav_li_column_active_or_not = ""
+    content_nav_li_it_active_or_not = "active"
+    content_nav_li_gourmet_active_or_not = ""
+  elsif request.path == "/top/articles/gourmet"
+    content_nav_li_it_active_or_not = ""
+    content_nav_li_column_active_or_not = ""
+    content_nav_li_gourmet_active_or_not = "active"
+  end
+%>
+<div class="row">
   <div class="col-xs-12">
     <h5 class="horizontal-vartical-box">
       <ul class="nav content-nav category-list">
-        <%
-        if request.path == "/top/articles/column"
-          content_nav_li_column_active_or_not = "active"
-        else
-          content_nav_li_column_active_or_not = ""
-        end
-        %>
         <li class="content-nav-li <%= content_nav_li_column_active_or_not %> col-xs-4">
           <a href="/top/articles/column" class="nav-link category-list-item <%= content_nav_li_column_active_or_not %>" id="category-list-item-column"><%= t('articles.categories.column') %></a>
         </li>
-        <%
-        if request.path == "/top/articles/it"
-          content_nav_li_it_active_or_not = "active"
-        else
-          content_nav_li_it_active_or_not = ""
-        end
-        %>
         <li class="content-nav-li <%= content_nav_li_it_active_or_not %> col-xs-4">
           <a href="/top/articles/it" class="nav-link category-list-item <%= content_nav_li_it_active_or_not %>" id="category-list-item-it"><%= t('articles.categories.it') %></a>
         </li>
-        <%
-        if request.path == "/top/articles/gourmet"
-          content_nav_li_gourmet_active_or_not = "active"
-        else
-          content_nav_li_gourmet_active_or_not = ""
-        end
-        %>
         <li class="content-nav-li <%= content_nav_li_gourmet_active_or_not %> col-xs-4">
           <a href="/top/articles/gourmet" class="nav-link category-list-item <%= content_nav_li_gourmet_active_or_not %>" id="category-list-item-gourmet"><%= t('articles.categories.gourmet') %></a>
         </li>
       </ul>
     </h5>
   </div>
-</div> <!-- 目次部分終了 -->
+</div>
+
 <div class="row">
   <div class="col-sm-12">
     <div class="row">
-      <div class="col-xs-12 pull-right">   <!-- タブ部分開始 -->
-        <ul class="nav nav-tabs nav-tabs-ext">
+      <div class="col-xs-12">
+        <ul class="nav nav-tabs nav-tabs-ext nav-display">
+          <li class="nav-item pull-left diaplay-switch-icon">
+            <a href="<% request.path %>?display=list">
+              <img class="" border="0" src="<%= asset_path articles_diaplay_list_icon %>" alt="test" width="32" height="32">
+            </a>
+          </li>
+          <li class="nav-item pull-left diaplay-switch-icon">
+            <a href="<% request.path %>?display=grid">
+              <img class="" border="0" src="<%= asset_path articles_diaplay_grid_icon %>" alt="test" width="32" height="32">
+            </a>
+          </li>
           <li class="nav-item pull-right">
             <a href="#tab-yesterday" class="nav-link bg-primary" data-toggle="tab"><%= t('articles.time_range.yesterday') %></a>
           </li>
@@ -49,15 +68,15 @@
           </li>
         </ul>
       </div>
-    </div>              <!-- タブ部分終了 -->
+    </div>
 
-    <div class="tab-content">   <!-- コンテンツ部分 -->
+    <div class="tab-content">
       <div id="tab-yesterday" class="tab-pane">
-        <%= render 'articles_list', articles: @yesterday_articles, scroll_on_off: 'OFF' %>
+        <%= render articles_render_html, articles: @yesterday_articles, scroll_on_off: 'OFF' %>
       </div>
       <div id="tab-today" class="tab-pane active">
-        <%= render 'articles_list', articles: @daily_articles, scroll_on_off: 'OFF' %>
+        <%= render articles_render_html, articles: @daily_articles, scroll_on_off: 'OFF' %>
       </div>
-    </div>    <!-- コンテンツ部分終了 -->
+    </div>
   </div>
 </div>

@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 a.category-list-item:link {
   color:#CCCCCC;
 }
@@ -49,9 +50,15 @@ ul.content-nav{
   word-break: break-all;
 }
 
+img.article-icon-list{
+  background-color: #ccc;
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
 
-
-img.article-icon{
+img.article-icon-grid{
   background-color: #ccc;
   width: 160px;
   height: 100px;

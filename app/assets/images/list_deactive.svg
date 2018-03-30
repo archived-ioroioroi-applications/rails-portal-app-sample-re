@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+<defs>
+<style>.cls-1{fill:#999999;}</style>
+</defs>
+<title>DevList</title>
+<g id="レイヤー_2" data-name="レイヤー 2">
+<g id="レイヤー_1-2" data-name="レイヤー 1">
+<rect class="cls-1" width="14" height="14" rx="1.25" ry="1.25"/>
+<rect class="cls-1" x="18" width="32" height="14" rx="1.25" ry="1.25"/>
+<rect class="cls-1" y="18" width="14" height="14" rx="1.25" ry="1.25"/>
+<rect class="cls-1" x="18" y="18" width="32" height="14" rx="1.25" ry="1.25"/>
+<rect class="cls-1" y="36" width="14" height="14" rx="1.25" ry="1.25"/>
+<rect class="cls-1" x="18" y="36" width="32" height="14" rx="1.25" ry="1.25"/>
+</g>
+</g>
+</svg>

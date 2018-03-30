@@ -45,6 +45,19 @@ class TopController < ApplicationController
       #   .order("date DESC")
       #   .limit(50)
     end
+    if params[:display]
+      case params[:display]
+      when "list"
+        @articles_display = "list"
+      when "grid"
+        @articles_display = "grid"
+      else
+        @articles_display = "list"
+      end
+    else
+      @articles_display = "list"
+    end
+
   end
 
   private
