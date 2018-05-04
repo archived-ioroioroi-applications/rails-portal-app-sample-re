@@ -102,6 +102,69 @@ namespace :rapportal do
     end
   end
 
+  desc "Create records from RSS by Pouch."
+  task :scrap_pouch => :environment do |task, args|
+    # RSSから取れないものはデフォルト値を設定 -------------------------------
+    source_link = "https://youpouch.com/"
+    source_title = "Pouch"
+    source_icon = "https://sociorocketnews.files.wordpress.com/2013/03/pouch_256_bg_white.png?w=125&h=125&crop=1"
+    # -----------------------------------------------------------------
+    uri = 'http://feeds.youpouch.com/youpouch'
+    feed = Scrapping::Rssfeed.parse(uri)
+    article = {}
+    feed.entries.each do |entry|
+      # RSSで取得したカテゴリーから分類 ------------------------------------
+      if entry.categories.include?("グルメ")
+        category = "gourmet"
+      elsif entry.categories.include?("エンタメ")
+        category = "column"
+      else
+        p "該当しないカテゴリー"  # 上記に該当しなければその記事を取得しない
+        next
+      end
+      # ---------------------------------------------------------------
+      p article = {date: entry.published, category: category, link: entry.url, title: entry.title, icon: entry.image, source_link: source_link, source_title: source_title, source_icon: source_icon}
+      begin
+        Article.create_or_update(article)
+      rescue => e
+        puts e
+        next
+      end
+    end
+  end
+
+  desc "Create records from RSS by macaroni."
+  task :scrap_macaroni => :environment do |task, args|
+    # RSSから取れないものはデフォルト値を設定 -------------------------------
+    icon = "https://cdn.macaro-ni.jp/assets/img/top/macaroni_icon160.png"
+    source_link = "https://macaro-ni.jp/"
+    source_title = "macaroni"
+    source_icon = "https://cdn.macaro-ni.jp/assets/img/top/macaroni_icon160.png"
+    category = "gourmet"
+    # -----------------------------------------------------------------
+    uri = 'https://macaro-ni.jp/rss/pickup.rss'
+    feed = Scrapping::Rssfeed.parse(uri)
+    article = {}
+    feed.entries.each do |entry|
+      # ---------------------------------------------------------------
+      # 記事アイコンを記事リンク先から取得. なければデフォルトアイコンを使用 -----
+      begin
+        p icon = Scrapping::Html.get_all(entry.url).css('.article_image').css('img')[0].attribute('src').value
+      rescue => e
+        p "iconが取れない動画系はいったん取りません！"
+        next
+      end
+      # ---------------------------------------------------------------
+      p article = {date: entry.published, category: category, link: entry.url, title: entry.title, icon: icon, source_link: source_link, source_title: source_title, source_icon: source_icon}
+      begin
+        Article.create_or_update(article)
+      rescue => e
+        puts e
+        next
+      end
+    end
+  end
+
 end
 
 # ユーザビリティ観点

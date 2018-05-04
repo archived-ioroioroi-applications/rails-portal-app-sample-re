@@ -32,3 +32,10 @@ this repositry of myportal
 * nginx
 * rapportal #<-Unicorn Service
 * rapportal_sidekiq
+
+
+## Add RSS Target
+* add rake task to feed for rapportal.rake
+* add worker to app/workers/
+* add config code to config/sidekiq.yml
+* restart service of sidekiq 

@@ -1,40 +1,48 @@
 require 'feedjira'
 require './app/modules/scrapping.rb'
 
-# feed = parse_rss("https://rocketnews24.com/feed/")
-# p feeds.entries[0]
+# feed = Scrapping::Rssfeed.parse("http://feeds.youpouch.com/youpouch")
 # puts "title         = " + feed.title
 # puts "url           = " + feed.url
 # puts "last_modified = " + feed.last_modified.to_s
 #
 # p feed.entries[0]
 
-# RSSから取れないため、デフォルト値を設定 -------------------------------
-icon = "https://static.curazy.com/image/curazy-v03/logo_curazy.png"
-source_link = "https://curazy.com"
-source_title = "笑うメディア クレイジー"
-source_icon = "https://static.curazy.com/image/curazy-v03/logo_curazy.png"
-# -----------------------------------------------------------------
-uri = 'https://curazy.com/feed'
+# # RSSから取れないものはデフォルト値を設定 -------------------------------
+icon = "https://cdn.macaro-ni.jp/assets/img/top/macaroni_icon160.png"
+source_link = "https://macaro-ni.jp/"
+source_title = "macaroni"
+source_icon = "https://cdn.macaro-ni.jp/assets/img/top/macaroni_icon160.png"
+category = "gourmet"
+# # -----------------------------------------------------------------
+uri = 'https://macaro-ni.jp/rss/pickup.rss'
 feed = Scrapping::Rssfeed.parse(uri)
+# puts "title         = " + feed.entries[0].title
+# puts "url           = " + feed.entries[0].url
+# puts "last_modified = " + feed.entries[0].last_modified.to_s
 article = {}
 feed.entries.each do |entry|
-  p entry.categories
+  # p entry
+  p entry.title
+  p entry.url
+  p entry.published
+  # p entry.image
+  # p entry.categories
   # RSSで取得したカテゴリーから分類 ------------------------------------
-  if entry.categories.include?("料理")
-    category = "gourmet"
-  elsif entry.categories.include?("レシピ")
-    category = "gourmet"
-  elsif entry.categories.include?("お菓子")
-    category = "gourmet"
-  else
-    category = "column"
-  end
+  # if entry.categories.include?("グルメ")
+  #   category = "gourmet"
+  # elsif entry.categories.include?("エンタメ")
+  #   category = "column"
+  # else
+  #   category = "column"
+  # end
   # ---------------------------------------------------------------
   # 記事アイコンを記事リンク先から取得. なければデフォルトアイコンを使用 -----
   begin
-    icon = Scrapping::Html.get_all(entry.url).css('.entry-thumbnail').css('img')[0].attribute('src').value
+    p icon = Scrapping::Html.get_all(entry.url).css('.article_image').css('img')[0].attribute('src').value
   rescue => e
+    p "iconが取れない動画系はいったん取りません！"
+    next
   end
   # ---------------------------------------------------------------
   # p article = {category: category, link: entry.url}

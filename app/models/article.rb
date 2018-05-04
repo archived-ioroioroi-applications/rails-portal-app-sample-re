@@ -1,3 +1,5 @@
+require 'time'
+
 class Article < ApplicationRecord
   # validates :link, presence: true, uniqueness: true  # 記事リンクは存在しないとエラーかつ一意でないとエラー
   # validates :title, presence: true  # 記事タイトルは存在しないとエラー
@@ -24,6 +26,17 @@ class Article < ApplicationRecord
     rescue => e # その他何かでエラーが起きたら
       puts "#{Time.now} - [Skip] something wrong. (#{e}) "
       puts e
+    end
+  end
+
+  def self.delete_old_articles(days) # article を更新する際にいちいちcreateかupdateかの条件分岐を指定するのが面倒なので.
+    begin
+      days_before = Time.now - 24*60*60*days
+      record = Article.where('date <= ?',days_before)
+      delete_result = record.destroy_all
+      puts "#{Time.now} - [Success] Record deleted ! Counts #{delete_result.count} records.)"
+    rescue => e # その他何かでエラーが起きたら
+      p e
     end
   end
 

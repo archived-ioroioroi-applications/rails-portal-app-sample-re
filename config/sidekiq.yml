@@ -12,3 +12,15 @@
     cron: '0 20 */6 * * *'   # Runs once per minute
     class: ScrapRocketnewsWorker
     enabled: true
+  scrap_pouch:
+    cron: '0 30 */6 * * *'   # Runs once per minute
+    class: ScrapPounchWorker
+    enabled: true
+  scrap_macaroni:
+    cron: '0 40 */6 * * *'   # Runs once per minute
+    class: ScrapMacaroniWorker
+    enabled: true
+  delete_old_articles:
+    cron: '0 30 15 * * *'   # Runs once per
+    class: DeleteOldArticlesWorker
+    enabled: true
