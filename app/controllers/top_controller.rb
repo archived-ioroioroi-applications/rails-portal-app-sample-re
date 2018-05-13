@@ -2,6 +2,12 @@ require 'time'
 
 class TopController < ApplicationController
   def articles
+    user_agent_mobile_or_not = discriminate_user_agent_mobile_or_not
+    if user_agent_mobile_or_not == "mobile"
+      @access_from_mobile = true
+    else
+      @access_from_mobile = false
+    end
     time_now = Time.now
     time_yesterday = time_now - 24*60*60
     time_2daysago = time_now - 24*60*60*2
@@ -64,6 +70,33 @@ class TopController < ApplicationController
 
   def category_params
     params.require(:category)
+  end
+
+  def discriminate_user_agent_for_browser
+    ua = request.user_agent
+    if ua.include? "MSIE"
+      browser = "ie"
+    elsif ua.include? "Firefox"
+      browser = "firefox"
+    elsif ua.include? "Chrome"
+      browser = "chrome"
+    elsif ua.include? "Opera"
+      browser = "opera"
+    elsif ua.include? "safari"
+      browser = "safari"
+    else
+      browser = "others"
+    end
+    return browser
+  end
+
+  def discriminate_user_agent_mobile_or_not
+    ua = request.user_agent
+    if(ua.include?('Mobile') || ua.include?('Android'))
+      return  "mobile"
+    else
+      return "PersonalComputer"
+    end
   end
 
 end

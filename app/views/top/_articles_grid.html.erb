@@ -9,8 +9,15 @@
   end
   %>
   <% articles.each do |article| %>
-    <a href="<%= article.link %>" target="_blank">
-      <img class="article-icon-grid" border="0" src=<%= article.icon %> alt=<%= article.title %> >
-    </a>
+    <div class="col-xs-3 col-md-2">
+      <figure>
+        <a href="<%= article.link %>" target="_blank">
+          <img class="article-icon-grid" border="0" src=<%= article.icon %> alt=<%= article.title %> >
+          <figcaption>
+            <p  class="article-icon-grid-caption"><%= article.title %></p>
+          </figcaption>
+        </a>
+      </figure>
+    </div>
   <% end %>
 </div>

@@ -95,6 +95,42 @@ p.article-source-link{
   -webkit-line-clamp: 3;
 }
 
+
+/* グリッド表示時のキャプションアニメーション */
+figure {
+  position: relative;
+  overflow: hidden;
+  width: 160px;       // img.article-icon-grid の width と等しくある必要がある.
+}
+
+figcaption {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 50px;
+  background: rgba(0,0,0,.6);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+figure:hover figcaption {
+  bottom: 0;
+}
+
+
+figcaption > p.article-icon-grid-caption{
+  color: white;
+  font-size: small;
+  line-height: 1;
+  text-overflow: ellipsis;
+}
+
+/* -------------------------------- */
+
+
+
 tr.article{
 }
 

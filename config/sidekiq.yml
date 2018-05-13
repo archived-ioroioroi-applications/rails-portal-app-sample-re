@@ -14,7 +14,7 @@
     enabled: true
   scrap_pouch:
     cron: '0 30 */6 * * *'   # Runs once per minute
-    class: ScrapPounchWorker
+    class: ScrapPouchWorker
     enabled: true
   scrap_macaroni:
     cron: '0 40 */6 * * *'   # Runs once per minute

@@ -1,12 +1,18 @@
 <div class="table">
   <%
-  if scroll_on_off == 'ON'
-    table_class = 'table table-hover table-bordered table-condensed table-scroll h5'
-  elsif scroll_on_off == 'OFF'
-    table_class = 'table table-hover table-bordered table-condensed h5'
-  else
-    table_class = 'table table-hover table-bordered table-condensed h5'
-  end
+    if scroll_on_off == 'ON'
+      table_class = 'table table-hover table-bordered table-condensed table-scroll h5'
+    elsif scroll_on_off == 'OFF'
+      table_class = 'table table-hover table-bordered table-condensed h5'
+    else
+      table_class = 'table table-hover table-bordered table-condensed h5'
+    end
+
+    if is_mobile
+      article_link_target = ""
+    else
+      article_link_target = "_blank"
+    end
   %>
 
   <table class="<%= table_class %>">
@@ -15,19 +21,19 @@
         <tr class="article">
           <td class="article-main">
             <div class="article-icon-space">
-              <a href="<%= article.link %>" target="_blank">
+              <a href="<%= article.link %>" target=<%= article_link_target %>>
                 <img class="article-icon-list" border="0" src=<%= article.icon %> alt=<%= article.title %> >
               </a>
             </div>
             <div class="article-link-space">
-              <a href="<%= article.link %>" target="_blank">
+              <a href="<%= article.link %>" target=<%= article_link_target %>>
                 <p class="article-link"><%= article.title %></p>
               </a>
             </div>
           </td>
           <td class="hidden-xs article-source">
             <div class="article-source-space">
-              <a href="<%= article.source_link %>" target="_blank">
+              <a href="<%= article.source_link %>" target=<%= article_link_target %>>
                 <p class="article-source-link"><%= article.source_title %></p>
               </a>
             </div>

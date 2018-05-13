@@ -27,6 +27,7 @@
     content_nav_li_gourmet_active_or_not = "active"
   end
 %>
+
 <div class="row">
   <div class="col-xs-12">
     <h5 class="horizontal-vartical-box">
@@ -72,10 +73,10 @@
 
     <div class="tab-content">
       <div id="tab-yesterday" class="tab-pane">
-        <%= render articles_render_html, articles: @yesterday_articles, scroll_on_off: 'OFF' %>
+        <%= render articles_render_html, articles: @yesterday_articles, is_mobile: @access_from_mobile, scroll_on_off: 'OFF' %>
       </div>
       <div id="tab-today" class="tab-pane active">
-        <%= render articles_render_html, articles: @daily_articles, scroll_on_off: 'OFF' %>
+        <%= render articles_render_html, articles: @daily_articles, is_mobile: @access_from_mobile, scroll_on_off: 'OFF' %>
       </div>
     </div>
   </div>

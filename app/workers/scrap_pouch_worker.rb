@@ -1,4 +1,4 @@
-class ScrapPounchWorker
+class ScrapPouchWorker
   include Sidekiq::Worker
 
   def perform(*args)
